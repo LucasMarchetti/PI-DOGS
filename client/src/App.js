@@ -1,10 +1,20 @@
-import './App.css';
+import "./App.css";
+import { Route, Switch } from "react-router-dom";
+
+//PAGES
+import LandingPage from "./components/LandingPage";
+import Home from "./components/Home.jsx";
+import DogDetails from "./components/DogDetails";
 
 function App() {
   return (
-    <div className="App">
-      <h1>Henry Dogs</h1>
-    </div>
+    <>
+      <Switch>
+        <Route exact path="/" component={LandingPage}/>
+        <Route exact path="/home/dogs" component={Home}/>
+        <Route exact path="/home/dogs/:name" component={DogDetails}/>
+      </Switch>
+    </>
   );
 }
 
