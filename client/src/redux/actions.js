@@ -16,7 +16,7 @@ export function getDogs() {
 export function getDetails(id) {
   return async function (dispatch) {
     let dogDetail = await axios.get(
-      `https://api.thedogapi.com/v1/breeds/search?q=${id}?api_key=${API_KEY}`
+      `https://api.thedogapi.com/v1/breeds/${id}?api_key=${API_KEY}`
     );
     console.log(dogDetail.data)
     return dispatch({ type: GET_DETAILS, payload: dogDetail.data });

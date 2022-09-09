@@ -10,7 +10,7 @@ function Dogs() {
         dogs.map((dog) => {
           return (
             <div key={dog.id}>
-              <Link to={`/home/dogs/${dog.name}`}>
+              <Link to={`/home/dogs/${dog.id}`}>
                 <h3>{dog.name}</h3>
               </Link>
               <ul>

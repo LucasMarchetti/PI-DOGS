@@ -12,12 +12,17 @@ function DogDetails() {
     dispatch(getDetails(id));
   }, [id, dispatch]);
 
-
   return (
     <>
       {detail ? (
         <>
           <h3>{detail.name}</h3>
+          {/* <ul>
+                <p>Bred for: {detail.bred_for}</p>
+                <p>Origin: {detail.origin}</p>
+                <p>Temperament: {detail.temperament}</p>
+                <p>Weight: {detail.weight.metric}</p>
+          </ul> */}
         </>
       ) : (
         <h4>No hay detalles</h4>
