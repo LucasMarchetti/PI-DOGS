@@ -1,8 +1,17 @@
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { Link } from "react-router-dom"
+import { getDogs } from "../redux/actions"
 
 function Dogs() {
-  const dogs = useSelector((state) => state.dogs);
+  const dogs = useSelector((state) => state.dogs)
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getDogs())
+  }, [dispatch]) 
+  console.log(dogs)
 
   return (
     <div>
@@ -20,10 +29,10 @@ function Dogs() {
                 <p>Weight: {dog.weight.metric}</p>
               </ul>
             </div>
-          );
+          )
         })}
     </div>
-  );
+  )
 }
 
-export default Dogs;
+export default Dogs
