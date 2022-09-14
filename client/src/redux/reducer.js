@@ -2,7 +2,7 @@ import { GET_DOGS, GET_DETAILS } from "./actions.js"
 
 const initialState = {
   dogs: [],
-  dogDetail: {},
+  dogDetail: [],
 }
 
 export default function rootReducer(state = initialState, action) {
@@ -19,7 +19,7 @@ export default function rootReducer(state = initialState, action) {
     case GET_DETAILS: {
       return {
         ...state,
-        dogDetail: action.payload
+        dogDetail: action.payload.data
       }
     }
 

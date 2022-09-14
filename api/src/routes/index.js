@@ -3,10 +3,10 @@ const dogsRoute = require('./dogs')
 const temperamentsRoute = require('./temperaments')
 
 
-const router = Router();
+const router = Router()
 
 router.use("/dogs", dogsRoute) //  /api/dogs/*
 router.use("/temperaments", temperamentsRoute)//  /api/temperaments/*
 
 
-module.exports = router;
+module.exports = router

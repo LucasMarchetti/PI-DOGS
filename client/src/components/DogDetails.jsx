@@ -1,34 +1,30 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { getDetails } from "../redux/actions";
+import { Link } from "react-router-dom"
+import "./styles/styles.css"
 
-function DogDetails() {
-  const dispatch = useDispatch()
-  const detail = useSelector((state) => state.dogDetail);
-  const { id } = useParams();
-
-  useEffect(() => {
-    dispatch(getDetails(id));
-  }, [id, dispatch]);
+export default function DogDetails({
+  id,
+  name,
+  image, 
+  bred_for, 
+  life_span, 
+  height, 
+  weight, 
+  temperament
+}) {
 
   return (
     <>
-      {detail ? (
-        <>
-          <h3>{detail.name}</h3>
-          {/* <ul>
-                <p>Bred for: {detail.bred_for}</p>
-                <p>Origin: {detail.origin}</p>
-                <p>Temperament: {detail.temperament}</p>
-                <p>Weight: {detail.weight.metric}</p>
-          </ul> */}
-        </>
-      ) : (
-        <h4>No hay detalles</h4>
-      )}
-    </>
-  );
-}
+      <div className="dog_card" key={id}>
+        <div className="dog_container">
+            <Link to={`/home/dogs/${id}`} style={{textDecoration: 'none'}}>
+              <img src={image} alt="img not found" className="img_card"/>
+              <h3>{name}</h3>
+            </Link>
+            <p>Temperament: {temperament}</p>
+            <p>Weight: {weight} Kg </p>
+        </div>
 
-export default DogDetails;
+      </div>
+    </>
+  )
+}

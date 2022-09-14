@@ -22,6 +22,9 @@ module.exports = (sequelize) => {
     },
     years: {
       type: DataTypes.INTEGER,
-    }
-  });
-};
+    },
+    temperament: {
+      type: DataTypes.STRING,
+    },
+  })
+}
