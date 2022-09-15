@@ -1,8 +1,9 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { Link } from "react-router-dom"
 import { getDogs } from "../redux/actions"
-import DogDetails from "./DogDetails"
-import SearchBar from "./SearchBar"
+import "./styles/styles.css"
+
 
 export default function Dogs() {
   const dogs = useSelector((state) => state.dogs)
@@ -15,7 +16,6 @@ export default function Dogs() {
 
   return (
     <div>
-      <SearchBar />
       {
         dogs ? dogs.map(({
             id,
@@ -27,17 +27,17 @@ export default function Dogs() {
             weight, 
             temperament
           }) => {
-            return <DogDetails 
-              key={id}
-              id={id}
-              name={name}
-              image={image}
-              bred_for={bred_for}
-              life_span={life_span}
-              height={height}
-              weight={weight}
-              temperament={temperament}
-            />
+            return (
+            <div className="dog_card" key={id}>
+
+              <Link to={`/home/dogs/${id}`} style={{textDecoration: 'none'}}>
+                <img src={image} alt="img not found" className="img_card"/>
+                <h3>{name}</h3>
+              </Link>
+            
+              <p>Temperament: {temperament}</p>
+              <p>Weight: {weight} Kg </p>
+            </div>)
         }) : 
         <h3>
         Not details...

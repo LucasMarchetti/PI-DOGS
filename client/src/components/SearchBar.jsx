@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { getDetails } from "../redux/actions"
+import "./styles/styles.css"
 
 export default function SearchBar () {
     const [search, setSearch] = useState('')
@@ -26,8 +27,8 @@ export default function SearchBar () {
                     onChange={onInputChange} 
                     value={search} 
                     placeholder='Search breed'
+                    className="searchBar"
                 />
-                {/* <input type="submit" value="Search" /> */}
             </form>
         </>
     )
