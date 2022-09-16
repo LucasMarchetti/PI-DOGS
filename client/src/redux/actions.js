@@ -2,8 +2,6 @@ import axios from "axios"
 export const GET_DOGS = "GET_DOGS"
 export const GET_DETAILS = "GET_DETAILS"
 
-// const { API_KEY } = process.env
-
 export function getDogs() {
   return function (dispatch) {
     axios.get("http://localhost:3001/api/dogs/")

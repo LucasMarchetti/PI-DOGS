@@ -4,9 +4,10 @@ const axios = require('axios')
 const { Dog, Temperament } = require('../db')
 const router = Router()
 // const { API_KEY } = process.env;
+// const img = require("./img_default/dog.jpg") 
 
 router.get('/' , (req, res, next) => { // /api/dogs?q=name || /api/dogs/
-    const name = req.query.q;
+    const name = req.query.q
     let dogPromiseApi
     let dogPromiseDb
 
@@ -58,7 +59,7 @@ router.get('/' , (req, res, next) => { // /api/dogs?q=name || /api/dogs/
         res.send(allDogs)
     })
     .catch((error) => {
-        next(error)
+        {"No se encuentran "}
     })
 })
 
@@ -78,7 +79,8 @@ router.get('/:id', async (req, res, next) => {
                 weight: r.weight.metric,
                 height: r.height.metric,
                 life_span: r.life_span,
-                image: `https://cdn2.thedogapi.com/images/${r.reference_image_id}.jpg`,
+                image: `https://cdn2.thedogapi.com/images/${r.reference_image_id}.jpg` ? 
+                `https://cdn2.thedogapi.com/images/${r.reference_image_id}.jpg` : img,
                 temperament: r.temperament,
                 origin: r.origin,
                 bred_for: r.bred_for,

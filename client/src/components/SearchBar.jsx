@@ -8,25 +8,25 @@ export default function SearchBar () {
 
     const dispatch = useDispatch()
 
-    function onSubmit(e) {
-        e.preventDefault()
-        dispatch(getDetails(search))
+    function handleChange(event) {
+        setSearch(event.target.value)
     }
-    
-    function onInputChange(e) {
-        e.preventDefault()
-        setSearch(e.target.value)
+
+    function handleSubmit(event) {
+        event.preventDefault()
+        dispatch(getDetails(search))
     }
 
     return (
         <>
-            <form onSubmit={onSubmit}>
+            <form onSubmit={(e) => handleSubmit(e)}>
                 <input 
                     type="text" 
+                    id="search"
                     autoComplete="off"
-                    onChange={onInputChange} 
-                    value={search} 
+                    onChange={(e) => handleChange(e)} 
                     placeholder='Search breed'
+                    value={search} 
                     className="searchBar"
                 />
             </form>

@@ -4,7 +4,6 @@ import { Link } from "react-router-dom"
 import { getDogs } from "../redux/actions"
 import "./styles/styles.css"
 
-
 export default function Dogs() {
   const dogs = useSelector((state) => state.dogs)
 
@@ -16,14 +15,12 @@ export default function Dogs() {
 
   return (
     <div>
+
       {
         dogs ? dogs.map(({
             id,
             name,
-            image, 
-            bred_for, 
-            life_span, 
-            height, 
+            image,
             weight, 
             temperament
           }) => {
