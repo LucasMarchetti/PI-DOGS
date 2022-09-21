@@ -1,10 +1,28 @@
-  /*       /LANDING PAGE      */
+ 
+ body {
+  background-image: url("bkg.jpg");
+ }
+
+ /*       /LANDING PAGE      */
 
 .landing {
     text-align: center;
     font-family: Comic Sans MS, Comic Sans, cursive;
+    background:#fcfcfcf5;
+    color: #331199;
+    width:300px;
+    height:200px;
+    border-radius:8px;
+    box-shadow:0 0 40px -10px rgba(0, 0, 0, 0.689);
+    margin:calc(40vh - 220px) auto;
+    padding:20px 30px;
+    max-width:calc(100vw - 40px);
+    box-sizing:border-box;
+    font-family: Comic Sans MS, Comic Sans, cursive;
+    position:relative;
+    border-radius: 20px;
   }
-  
+
   .button_begin {
     font-family: Comic Sans MS, Comic Sans, cursive;
     border-radius: 10px;
@@ -14,7 +32,7 @@
     background-color: #4d3aca;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
-  
+
   .button_begin:hover {
     background-color: #eeeeee;
     color: #4414d3;
@@ -37,10 +55,11 @@
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
     text-decoration: none;
+    background-color: #fcfcfc;
   }
-  
+
   .dog_card:hover {
-    box-shadow: 10px 12px 16px 0 rgba(0, 0, 0, 0.2), 
+    box-shadow: 10px 12px 16px 0 rgba(0, 0, 0, 0.2),
       0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
 
@@ -53,7 +72,7 @@
 
   .navbar{
     overflow: hidden;
-    background-color: #080079cc;
+    background-color: #080079;
     padding: 5px 10px;
     font-family: Comic Sans MS, Comic Sans, cursive;
   }
@@ -68,7 +87,7 @@
     line-height: 15px;
     border-radius: 4px;
     font-weight: bold;
-    box-shadow: 0 0px 2px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0px 2px 0 rgba(0, 0, 0, 0.312);
   }
 
   .navbar a:hover {
@@ -90,7 +109,7 @@
   /*   SEARCHBAR    */
 
   .searchBar {
-    background: url(https://cdn0.iconfinder.com/data/icons/slim-square-icons-basics/100/basics-19-32.png) 
+    background: url(https://cdn0.iconfinder.com/data/icons/slim-square-icons-basics/100/basics-19-32.png)
     no-repeat 3px 5px;
     background-size: 24px;
     background-color: white;
@@ -105,13 +124,13 @@
   .card {
     padding: 20px;
     margin: auto;
-    width: 20%;
-    /* height: 10%; */
+    width: 50%;
     border-radius: 10px ;
     font-family: Comic Sans MS, Comic Sans, cursive;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     transition: 0.3s;
     text-decoration: none;
+    background-color: #fcfcfc;
   }
 
   .card:hover {
@@ -123,8 +142,10 @@
   }
 
   .img_card_details {
-    width: 100%;
-    border-radius: 10px 10px 0 0;
+    align-items: center;
+    float: right;
+    width: 50%;
+    border-radius: 10px ;
   }
 
   .error {
@@ -137,14 +158,84 @@
     font-size: 32px;
     color: rgb(255, 255, 255);
     background-color: #4d3aca;
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2),
     0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
-    
+
   .btn-to-home:hover {
     background-color: #eeeeee;
     color: #4414d3;
     box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
       0 17px 50px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
+  }
+
+  /*    formulario          */
+
+  .formulario{
+    width:340px;
+    height:440px;
+    background-color: #fcfcfc;
+    border-radius:10px;
+    box-shadow:0 0 40px -10px rgba(0, 0, 0, 0.689);
+    margin:calc(40vh - 220px) auto;
+    padding:20px 30px;
+    max-width:calc(100vw - 40px);
+    box-sizing:border-box;
+    font-family: Comic Sans MS, Comic Sans, cursive;
+    position:relative
+  }
+
+  .h2-create {
+    text-align: center;
+    margin:10px 0;
+    padding-bottom:10px;
+    padding-left: 50px;
+    width:180px;
+    color:#33109b;
+  }
+
+  .input-create{
+    width:100%;
+    padding:10px;
+    box-sizing:border-box;
+    background:none;
+    outline:none;
+    resize:none;
+    border:0;
+    font-family: Comic Sans MS, Comic Sans, cursive;
+    transition:all .3s;
+    border-bottom:2px solid #bebed2;
+    padding-bottom: 10px;
+
+  }
+
+  .select-create {
+    text-align: center;
+    align-items: center;
+    color: #fcfcfc;
+    background-color: #4214cbfd;
+    border-radius: 5px;
+  }
+
+  .btn-create{
+    float:  right;
+    padding: 8px 12px;
+    margin: 8px 0 0;
+    font-family: Comic Sans MS, Comic Sans, cursive;
+    border: 1px solid #78788c;
+    border-radius: 20px;
+    background: 0;
+    cursor: pointer;
+    transition: all .3s;
+  }
+  .btn-create input {
+    border-bottom: 0
+  }
+
+  .btn-create:hover{
+    box-shadow: 0 0 25px -10px rgba(0, 0, 0, 0.689);
+  }
+  .btn-create input:hover{
     cursor: pointer;
   }

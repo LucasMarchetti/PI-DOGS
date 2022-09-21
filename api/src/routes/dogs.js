@@ -3,8 +3,7 @@ const { Op } = require('sequelize')
 const axios = require('axios')
 const { Dog, Temperament } = require('../db')
 const router = Router()
-// const { API_KEY } = process.env;
-// const img = require("./img_default/dog.jpg") 
+// const { API_KEY } = process.env
 
 router.get('/' , (req, res, next) => { // /api/dogs?q=name || /api/dogs/
     const name = req.query.q
@@ -26,6 +25,7 @@ router.get('/' , (req, res, next) => { // /api/dogs?q=name || /api/dogs/
                 ['name', 'ASC']
             ]
         })
+
     } else {
         // `https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`
         dogPromiseApi = axios.get(`https://api.thedogapi.com/v1/breeds`)
@@ -58,14 +58,15 @@ router.get('/' , (req, res, next) => { // /api/dogs?q=name || /api/dogs/
         let allDogs = [...dogsFiltered, ...dogDb] // concatena los datos de la API y de la base de datos
         res.send(allDogs)
     })
-    .catch((error) => {
+    .catch(() => {
         {"No se encuentran "}
     })
 })
 
-router.get('/:id', async (req, res, next) => {
+router.get('/id/:id', async (req, res, next) => {
     try {
-        let {id} = req.params
+        let { id } = req.params
+        console.log(id, "id get a :iddddddddddd")
         let dog
         if(typeof id === 'string' && id.length > 5) { // es de la base de datos
             dog = await Dog.findByPk(id)
@@ -79,8 +80,7 @@ router.get('/:id', async (req, res, next) => {
                 weight: r.weight.metric,
                 height: r.height.metric,
                 life_span: r.life_span,
-                image: `https://cdn2.thedogapi.com/images/${r.reference_image_id}.jpg` ? 
-                `https://cdn2.thedogapi.com/images/${r.reference_image_id}.jpg` : img,
+                image: `https://cdn2.thedogapi.com/images/${r.reference_image_id}.jpg`,
                 temperament: r.temperament,
                 origin: r.origin,
                 bred_for: r.bred_for,
@@ -88,38 +88,31 @@ router.get('/:id', async (req, res, next) => {
             res.send(dog)
         }
     } catch (error) {
-        next(error)
+        next(error, "error en el get de id backend")
     }
 })
 
-router.post('/' , async (req, res, next) => { // /api/dogs/*
-    try {
+router.post('/create' , async (req, res, next) => { // /api/dogs/*
+    console.log(req.body, "console.log /create")
       const { name, height, weight, years, temperament } = req.body
-      const newDog = await Dog.create({
+      try {
+        const newDog = await Dog.create({
           name,
           height,
           weight,
-          years,
-          temperament
+          years
       })
-      res.status(200).send(newDog)
-    } catch (error) {
+        await newBreed.addTemperament(temperament)
+        res.status(200).send(newDog)
+      } catch (error) {
         next(error)
-    }
+      }
+
 })
 
 router.put('/' , (req, res, next) => {
     res.send("soy put /dogs")
-// [ ] Un formulario controlado con JavaScript con los siguientes campos:
-// Nombre
-// Altura (Diferenciar entre altura mínima y máxima)
-// Peso (Diferenciar entre peso mínimo y máximo)
-// Años de vida
-// [ ] Posibilidad de seleccionar/agregar uno o más temperamentos
-// [ ] Botón/Opción para crear una nueva raza de perro
-// Es requisito que el formulario de creación esté validado con JavaScript
-// Por ejemplo: Que el nombre de la raza no pueda contener números o símbolos,
-//              que el peso/altura mínimo no pueda ser mayor al máximo y viceversa, etc.
+
 })
 
 router.delete('/' , (req, res, next) => {
@@ -127,14 +120,3 @@ router.delete('/' , (req, res, next) => {
 })
 
 module.exports = router
-
-// router.post('/:dogsId/temperament/:temperamentId', async (req, res, next) => {
-//     try {
-//         const { dogsId, temperamentId } = req.params
-//         const dog = await Dog.findByPk(dogsId)
-//         await dog.addTemperament(temperamentId) //mixin sql. add + (nombre de la tabla)
-//         res.send(200)
-//     } catch (error) {
-//         next(error)
-//     }
-// })

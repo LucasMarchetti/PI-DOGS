@@ -1,42 +1,38 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, useParams } from "react-router-dom"
-import { getDogs } from "../redux/actions"
+import { getDetailsById } from "../redux/actions"
 import "./styles/styles.css"
 
 export default function DogDetails() {
   const { id } = useParams()
-  
-  const dog = useSelector((state) => state.dogs)
 
-  const detail = dog.find((d) => 
-    d.id.toString() === id.toString()
-  )
-  
+  const dog = useSelector((state) => state.dogDetail)
+
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(getDogs())
-  }, [dispatch]) 
+    dispatch(getDetailsById(id))
+  }, [dispatch, id]) 
 
   return (
     <>
       {
-        detail ?
+        dog ?
         <div className="card">
           <div>
-            <img src={detail.image} alt="img not found" className="img_card_details" />
+            <img src={dog.image} alt="img not found" className="img_card_details" />
           </div>
 
           <div >
-              <h1 className="details_card">{detail.name}</h1> 
+              <h1 className="details_card">{dog.name}</h1> 
               <ul >
-                <p>Origin: {detail.origin ? detail.origin : "Unknown origin"}</p>
-                <p>Height: {detail.height ? detail.height : "Unknown height"} cm</p>
-                <p>Weight: {detail.weight ? detail.weight : "Unknown weight"} kg</p>
-                <p>Bred for: {detail.bred_for ? detail.bred_for : "Unknown bred for"}</p>
-                <p>Life span: {detail.life_span ? detail.life_span : "Unknown life span"}</p>
-                <p>Temperaments: {detail.temperament ? detail.temperament : "Unknown temperament"}</p>
+                <p>Origin: {dog.origin ? dog.origin : "Unknown"}</p>
+                <p>Height: {dog.height ? dog.height : "Unknown"} cm</p>
+                <p>Weight: {dog.weight ? dog.weight : "Unknown"} kg</p>
+                <p>Bred for: {dog.bred_for ? dog.bred_for : "Unknown"}</p>
+                <p>Life span: {dog.life_span ? dog.life_span : "Unknown"}</p>
+                <p>Temperaments: {dog.temperament ? dog.temperament : "Unknown"}</p>
               </ul>
           </div>
         </div>

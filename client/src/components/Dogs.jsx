@@ -2,9 +2,11 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { getDogs } from "../redux/actions"
+import Order from "./Order"
 import "./styles/styles.css"
 
 export default function Dogs() {
+
   const dogs = useSelector((state) => state.dogs)
 
   const dispatch = useDispatch()
@@ -15,7 +17,7 @@ export default function Dogs() {
 
   return (
     <div>
-
+        <Order />
       {
         dogs ? dogs.map(({
             id,
@@ -27,7 +29,7 @@ export default function Dogs() {
             return (
             <div className="dog_card" key={id}>
 
-              <Link to={`/home/dogs/${id}`} style={{textDecoration: 'none'}}>
+              <Link to={`/home/dogs/id/${id}`} style={{textDecoration: 'none'}}>
                 <img src={image} alt="img not found" className="img_card"/>
                 <h3>{name}</h3>
               </Link>
@@ -36,9 +38,16 @@ export default function Dogs() {
               <p>Weight: {weight} Kg </p>
             </div>)
         }) : 
-        <h3>
-        Not details...
-        </h3>
+        <div className="error">
+          <h1>
+            Lo sentimos, ha ocurrido un error.
+          </h1>
+          <Link to="/home/dogs">
+            <button className="btn-to-home">
+              HOME
+            </button>
+          </Link>
+        </div>
       }
     </div>
   )

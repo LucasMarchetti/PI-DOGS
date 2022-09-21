@@ -4,9 +4,10 @@ import { Route, Switch } from "react-router-dom"
 //PAGES
 import LandingPage from "./components/LandingPage"
 import Dogs from "./components/Dogs"
-import DogDetails from "./components/DogDetails"
+import CreateDog from "./components/CreateDog"
 
 //COMPONENTS
+import DogDetails from "./components/DogDetails"
 import NavBar from "./components/NavBar"
 
 function App() {
@@ -19,7 +20,8 @@ function App() {
         <Route path="/" >
           <NavBar />
           <Route exact path="/home/dogs" component={Dogs}/>
-          <Route exact path="/home/dogs/:id" component={DogDetails}/>
+          <Route exact path="/home/dogs/id/:id" component={DogDetails}/>
+          <Route exact path="/home/dogs/create" component={CreateDog} />
         </Route>
       
       </Switch>

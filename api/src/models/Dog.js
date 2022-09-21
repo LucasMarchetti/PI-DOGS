@@ -26,5 +26,5 @@ module.exports = (sequelize) => {
     temperament: {
       type: DataTypes.STRING,
     },
-  })
+  }, { timestamps: false })
 }
