@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { getDogs } from "../redux/actions"
+import Filters from "./Filters"
 import Order from "./Order"
 import "./styles/styles.css"
 
@@ -18,6 +19,7 @@ export default function Dogs() {
   return (
     <div>
         <Order />
+        <Filters />
       {
         dogs ? dogs.map(({
             id,

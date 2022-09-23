@@ -2,8 +2,9 @@ import axios from "axios"
 export const GET_DOGS = "GET_DOGS"
 export const GET_DETAILS = "GET_DETAILS"
 export const GET_DETAILS_BY_ID = "GET_DETAILS_BY_ID"
-export const SORT = "SORT"
+export const SORT_BY_NAME = "SORT_BY_NAME"
 export const CREATE_DOG = "CREATE_DOG"
+export const SORT_BY_WEIGHT = "SORT_BY_WEIGHT"
 
 export function getDogs() {
   return function (dispatch) {
@@ -51,12 +52,20 @@ export function getDetailsById(id) {
   }
 }
 
-export function sort(order) {
+export function sortByName(order) {
   return {
-    type: SORT,
+    type: SORT_BY_NAME,
     payload: order
   }
 }
+
+export function sortByWeight(order) {
+  return {
+    type: SORT_BY_WEIGHT,
+    payload: order
+  }
+}
+
 
 export function create() {
   return function(dispatch) {

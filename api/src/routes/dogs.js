@@ -49,7 +49,9 @@ router.get('/' , (req, res, next) => { // /api/dogs?q=name || /api/dogs/
                 weight: dog.weight.metric,
                 height: dog.height.metric,
                 life_span: dog.life_span,
-                image: `https://cdn2.thedogapi.com/images/${dog.reference_image_id}.jpg`,
+                // image: dog.url ? `https://cdn2.thedogapi.com/images/${dog.reference_image_id}.jpg` 
+                //             : `https://cdn2.thedogapi.com/images/${dog.reference_image_id}.png` ,
+                image: dog.image.url,
                 temperament: dog.temperament,
                 origin: dog.origin,
                 bred_for: dog.bred_for,
