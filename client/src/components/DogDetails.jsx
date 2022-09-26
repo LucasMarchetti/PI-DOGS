@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { Link, useParams } from "react-router-dom"
 import { getDetailsById } from "../redux/actions"
 import "./styles/styles.css"
+import dogImage from "./styles/dog.png"
 
 export default function DogDetails() {
   const { id } = useParams()
@@ -21,7 +22,7 @@ export default function DogDetails() {
         dog ?
         <div className="card">
           <div>
-            <img src={dog.image} alt="img not found" className="img_card_details" />
+            <img src={dog.image ? dog.image : dogImage} alt="img not found" className="img_card_details" />
           </div>
 
           <div >

@@ -26,6 +26,7 @@ export default function rootReducer(state = initialState, action) {
     }
 
     case GET_DETAILS: {
+      
       return {
         ...state,
         dogs: action.payload,
@@ -43,10 +44,10 @@ export default function rootReducer(state = initialState, action) {
     case SORT_BY_NAME: {
       let orderDogs = [...state.dogs]
       orderDogs = orderDogs.sort((a, b) => {
-        if(a.name < b.name) {
+        if(a.name.toLowerCase() < b.name.toLowerCase()) {
           return action.payload === ASCENDENTE ? -1 : 1
         }
-        if(a.name > b.name) {
+        if(a.name.toLowerCase() > b.name.toLowerCase()) {
           return action.payload === ASCENDENTE ? 1 : -1
         }
         return 0
@@ -90,6 +91,9 @@ export default function rootReducer(state = initialState, action) {
       } else {
         promB = +rb[0]
       }
+
+      // promA = (+ra[0] + (+ra[1]) ? +ra[1] : 0) / 2; // 5
+      // promB = (+rb[0] + (+rb[1]) ? +rb[1] : 0) / 2;
 
       if(promA < promB) { 
         return action.payload === ASCENDENTE ? -1 : 1

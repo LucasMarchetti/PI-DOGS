@@ -2,9 +2,9 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { getDogs } from "../redux/actions"
-import Filters from "./Filters"
 import Order from "./Order"
 import "./styles/styles.css"
+import dogImage from "./styles/dog.png"
 
 export default function Dogs() {
 
@@ -19,7 +19,6 @@ export default function Dogs() {
   return (
     <div>
         <Order />
-        <Filters />
       {
         dogs ? dogs.map(({
             id,
@@ -32,7 +31,7 @@ export default function Dogs() {
             <div className="dog_card" key={id}>
 
               <Link to={`/home/dogs/id/${id}`} style={{textDecoration: 'none'}}>
-                <img src={image} alt="img not found" className="img_card"/>
+                <img src={image ? image : dogImage } alt="img not found" className="img_card"/>
                 <h3>{name}</h3>
               </Link>
             

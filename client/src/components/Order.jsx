@@ -18,7 +18,8 @@ export default function Order() {
         <div className="order">
 
             <div>
-                <h2>SORT BY NAME</h2>
+                <h2>SORT</h2>
+                <h3>Name</h3>
                 <select name="select" onChange={onSelectChange}>
                     <option value={ASCENDENTE}>Ascendente</option>
                     <option value={DESCENDENTE}>Descendente</option>
@@ -26,10 +27,22 @@ export default function Order() {
             </div>
 
             <div>
-                <h2>SORT BY WEIGHT</h2>
+                <h3>Weight</h3>
                 <select name="select" onChange={onSelectChangeWeight}>
                     <option value={ASCENDENTE}>Ascendente</option>
                     <option value={DESCENDENTE}>Descendente</option>
+                </select>
+            </div>
+
+            <div>
+                <h2>FILTER</h2>
+                <h3>Temperaments</h3>
+                <select name="select" onChange={onSelectChange}>
+                    <option value={DESCENDENTE}>Temperamento 1</option>
+                    <option value={DESCENDENTE}>Temperamento 2</option>
+                    <option value={DESCENDENTE}>Temperamento 3</option>
+                    <option value={DESCENDENTE}>Temperamento 4</option>
+
                 </select>
             </div>
 

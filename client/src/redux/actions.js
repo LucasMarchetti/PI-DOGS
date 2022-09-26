@@ -22,7 +22,9 @@ export function getDogs() {
 }
 
 export function getDetails(search) {
+
   return function (dispatch) {
+
     axios.get('http://localhost:3001/api/dogs?q=' + search)
     .then((dogDetail) => {
       dispatch({ 
@@ -31,7 +33,7 @@ export function getDetails(search) {
         })
     })
     .catch((error) => {
-      console.log(error)
+      console.log(error, "errorr")
     })
   }
 }
@@ -40,7 +42,6 @@ export function getDetailsById(id) {
   return function (dispatch) {
     axios.get('http://localhost:3001/api/dogs/id/' + id)
     .then((detail) => {
-      // console.log(detail.data, "console log de detail ")
       dispatch({ 
          type: GET_DETAILS_BY_ID,
          payload: detail.data
