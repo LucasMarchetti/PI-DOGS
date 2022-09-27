@@ -101,7 +101,7 @@ router.get('/id/:id', async (req, res, next) => {
             res.send(dog)
         }
     } catch (error) {
-        next(error, "error en el get de id backend")
+        next(error)
     }
 })
 

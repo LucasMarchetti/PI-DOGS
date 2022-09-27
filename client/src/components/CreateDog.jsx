@@ -18,7 +18,6 @@ export default function CreateDog() {
     const dogs = useSelector((state) => state.dogs)
     const history = useHistory()
     const dispatch = useDispatch()
-    console.log(dog, "dogs useselector")
 
     useEffect(() => {
         dispatch(getDogs())
@@ -48,8 +47,10 @@ export default function CreateDog() {
             }
         }) 
     }
-
-    function onInputChange(e) { // hacer validacion ***
+    // *** HACER VALIDACIONES ***
+    // Que el nombre de la raza no pueda contener números o símbolos, 
+    // que el peso/altura mínimo no pueda ser mayor al máximo y viceversa, etc
+    function onInputChange(e) { 
         e.preventDefault()
         setDog({
             ...dog,
@@ -84,7 +85,6 @@ export default function CreateDog() {
            }
          })
        })
-    //    console.log(names, "NAMESS")
        return names
     }
     const deleteTemp = (name) => {
