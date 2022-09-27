@@ -2,14 +2,22 @@ const { Router } = require('express')
 const { Temperament } = require('../db')
 const router = Router();
 
-router.get('/' , (req, res, next) => {
-    return Temperament.findAll()
-    .then((temperaments) => {
-        res.status(200).send(temperaments)
-    })
-    .catch((error) => {
+router.get('/' , async (req, res, next) => {
+
+    try {
+        let temp = await Temperament.findAll({
+            order: [['name', 'asc']]
+        })
+
+        if (temp) {
+            res.json(temp)
+        } else {
+            res.json('Not found')
+        }
+
+    } catch (error) {
         next(error)
-    })
+    }
 })
 
 router.post('/' , async (req, res, next) => {

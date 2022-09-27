@@ -15,17 +15,19 @@ export default function Dogs() {
   useEffect(() => {
     dispatch(getDogs())
   }, [dispatch]) 
+  console.log(dogs, "CONSOLE.LOG DOGS ")
 
   return (
     <div>
         <Order />
       {
-        dogs ? dogs.map(({
+        dogs ? dogs?.map(({
             id,
             name,
             image,
             weight, 
-            temperament
+            temperament,
+            temperamento
           }) => {
             return (
             <div className="dog_card" key={id}>
@@ -35,7 +37,7 @@ export default function Dogs() {
                 <h3>{name}</h3>
               </Link>
             
-              <p>Temperament: {temperament}</p>
+              <p>Temperament: {temperament ? temperament : temperamento}</p>
               <p>Weight: {weight} Kg </p>
             </div>)
         }) : 

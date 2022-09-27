@@ -4,7 +4,6 @@ module.exports = (sequelize) => {
   sequelize.define('dog', {
     id : {
       type: DataTypes.UUID,
-      allowNull: false,
       primaryKey: true,
       defaultValue: DataTypes.UUIDV4
     },
@@ -24,6 +23,9 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
     },
     temperament: {
+      type: DataTypes.STRING,
+    },
+    image: {
       type: DataTypes.STRING,
     },
   }, { timestamps: false })

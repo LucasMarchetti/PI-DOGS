@@ -92,9 +92,6 @@ export default function rootReducer(state = initialState, action) {
         promB = +rb[0]
       }
 
-      // promA = (+ra[0] + (+ra[1]) ? +ra[1] : 0) / 2; // 5
-      // promB = (+rb[0] + (+rb[1]) ? +rb[1] : 0) / 2;
-
       if(promA < promB) { 
         return action.payload === ASCENDENTE ? -1 : 1
       }

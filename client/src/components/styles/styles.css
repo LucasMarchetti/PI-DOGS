@@ -71,11 +71,6 @@
   
   /*    options        */
 
-  /* .options {
-    flex-direction: column;
-    float: left;
-  } */
-
   .order {
     color: #080079;
     text-align: center;
@@ -93,22 +88,17 @@
 
   .order select {
     border-radius: 5px;
+    cursor: pointer;
+    background-color: #4414d3;
+    color: white;
+
   }
 
-  /* .filter {
-    color: #080079;
-    text-align: center;
-    background-color: #fcfcfc;
+  .option {
     border-radius: 5px;
-    flex-direction: column;
-    border: 3px solid #080079;
-    float: left;
-    width: 20%;
-    padding: 20px;
-    display:flex;
-    margin: 20px;
-  } */
-  
+    cursor: pointer;
+    background-color: #4414d3;
+  }
 
   /*   NAVBAR   */
 
@@ -225,8 +215,8 @@
 
   .formulario{
     position: fixed;
-    width:340px;
-    height:440px;
+    width: 50%;
+    height:500px;
     background-color: #fcfcfc;
     border-radius:10px;
     box-shadow:0 0 40px -10px rgba(0, 0, 0, 0.689);
@@ -235,7 +225,7 @@
     max-width:calc(100vw - 40px);
     box-sizing:border-box;
     font-family: Comic Sans MS, Comic Sans, cursive;
-    position:relative
+    position: relative;
   }
 
   .h2-create {
@@ -259,6 +249,7 @@
     transition:all .3s;
     border-bottom:2px solid #bebed2;
     padding-bottom: 10px;
+    cursor: pointer;
   }
 
   .select-create {
@@ -267,26 +258,53 @@
     color: #fcfcfc;
     background-color: #4214cbfd;
     border-radius: 5px;
+    cursor: pointer;
+    width: 170px;
+  }
+  .temp-container{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+  }
+  .temp-container p {
+    margin: 1px;
+    background-color: #4214cbfd;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-size: 12px;
+  }
+  .temp-container button{
+    color: white;
+    margin-left: 5px;
+    background-color: transparent;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    transition: color 0.2s ease;
   }
 
   .btn-create{
     float:  right;
     padding: 8px 12px;
-    margin: 8px 0 0;
+    margin: 12px 0 0;
     font-family: Comic Sans MS, Comic Sans, cursive;
-    border: 1px solid #78788c;
+    border: 2px solid #4214cbfd;
     border-radius: 20px;
     background: 0;
     cursor: pointer;
     transition: all .3s;
   }
+
   .btn-create input {
-    border-bottom: 0
+    border-bottom: 0;
   }
 
   .btn-create:hover{
     box-shadow: 0 0 25px -10px rgba(0, 0, 0, 0.689);
   }
+
   .btn-create input:hover{
     cursor: pointer;
   }

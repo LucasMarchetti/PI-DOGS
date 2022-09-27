@@ -21,16 +21,16 @@ export default function Order() {
                 <h2>SORT</h2>
                 <h3>Name</h3>
                 <select name="select" onChange={onSelectChange}>
-                    <option value={ASCENDENTE}>Ascendente</option>
-                    <option value={DESCENDENTE}>Descendente</option>
+                    <option className="option" value={ASCENDENTE}>Ascendente</option>
+                    <option className="option" value={DESCENDENTE}>Descendente</option>
                 </select>
             </div>
 
             <div>
                 <h3>Weight</h3>
                 <select name="select" onChange={onSelectChangeWeight}>
-                    <option value={ASCENDENTE}>Ascendente</option>
-                    <option value={DESCENDENTE}>Descendente</option>
+                    <option className="option" value={ASCENDENTE}>Ascendente</option>
+                    <option className="option" value={DESCENDENTE}>Descendente</option>
                 </select>
             </div>
 
@@ -38,10 +38,10 @@ export default function Order() {
                 <h2>FILTER</h2>
                 <h3>Temperaments</h3>
                 <select name="select" onChange={onSelectChange}>
-                    <option value={DESCENDENTE}>Temperamento 1</option>
-                    <option value={DESCENDENTE}>Temperamento 2</option>
-                    <option value={DESCENDENTE}>Temperamento 3</option>
-                    <option value={DESCENDENTE}>Temperamento 4</option>
+                    <option className="option" value={DESCENDENTE}>Temperamento 1</option>
+                    <option className="option" value={DESCENDENTE}>Temperamento 2</option>
+                    <option className="option" value={DESCENDENTE}>Temperamento 3</option>
+                    <option className="option" value={DESCENDENTE}>Temperamento 4</option>
 
                 </select>
             </div>

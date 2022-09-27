@@ -9,7 +9,7 @@ export default function DogDetails() {
   const { id } = useParams()
 
   const dog = useSelector((state) => state.dogDetail)
-
+  console.log(dog, "console.log dog detail")
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -32,7 +32,7 @@ export default function DogDetails() {
                 <p>Height: {dog.height ? dog.height : "Unknown"} cm</p>
                 <p>Weight: {dog.weight ? dog.weight : "Unknown"} kg</p>
                 <p>Bred for: {dog.bred_for ? dog.bred_for : "Unknown"}</p>
-                <p>Life span: {dog.life_span ? dog.life_span : "Unknown"}</p>
+                <p>Life span: {dog.life_span ? dog.life_span : dog.years}</p>
                 <p>Temperaments: {dog.temperament ? dog.temperament : "Unknown"}</p>
               </ul>
           </div>

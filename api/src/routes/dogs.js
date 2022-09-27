@@ -106,21 +106,32 @@ router.get('/id/:id', async (req, res, next) => {
 })
 
 router.post('/create' , async (req, res, next) => { // /api/dogs/*
-    console.log(req.body, "console.log /create")
-      const { name, height, weight, years, temperament } = req.body
-      try {
-        const newDog = await Dog.create({
-          name,
-          height,
-          weight,
-          years
-      })
-        await newBreed.addTemperament(temperament)
-        res.status(200).send(newDog)
-      } catch (error) {
-        next(error)
-      }
+    let temperamentos
 
+    let { name, height, weight, years, temperament, temperaments } = req.body
+
+    if(temperaments.length > 1) {
+       temperamentos = temperaments.join(", ")
+    } else {
+        temperamentos = temperaments.join()
+    }
+
+    if(!temperament) {
+        res.send("ERROR /CREATE BACK")
+    }
+    try {
+    const newDog = await Dog.create({
+        name,
+        height,
+        weight,
+        years,
+        temperament: temperamentos,
+    })
+    await newDog.addTemperament(temperament)
+    res.status(200).send(newDog)
+    } catch (error) {
+    next(error)
+    }
 })
 
 router.put('/' , (req, res, next) => {
