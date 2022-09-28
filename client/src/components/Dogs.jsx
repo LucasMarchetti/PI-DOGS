@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { getDogs } from "../redux/actions"
 import Order from "./Order"
-import "./styles/styles.css"
 import dogImage from "./styles/dog.png"
+import Pagination from "./Pagination"
+import "./styles/styles.css"
 
 export default function Dogs() {
 
@@ -52,6 +53,7 @@ export default function Dogs() {
           </Link>
         </div>
       }
+      <Pagination />
     </div>
   )
 }
