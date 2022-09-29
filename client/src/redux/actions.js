@@ -5,6 +5,8 @@ export const GET_DETAILS_BY_ID = "GET_DETAILS_BY_ID"
 export const SORT_BY_NAME = "SORT_BY_NAME"
 export const CREATE_DOG = "CREATE_DOG"
 export const SORT_BY_WEIGHT = "SORT_BY_WEIGHT"
+export const FILTER_BY_TEMP = "FILTER_BY_TEMP"
+export const FILTER_BY_BREED = "FILTER_BY_BREED"
 
 export function getDogs() {
   return function (dispatch) {
@@ -64,6 +66,21 @@ export function sortByWeight(order) {
   return {
     type: SORT_BY_WEIGHT,
     payload: order
+  }
+}
+
+export function filterByTemp(temp) {
+  // console.log(temp, "temp actions") // ""active" temp actions"
+  return {
+    type: FILTER_BY_TEMP,
+    payload: temp
+  }
+}
+
+export function filterByBreeds(type) {
+  return {
+    type: FILTER_BY_BREED,
+    payload: type
   }
 }
 

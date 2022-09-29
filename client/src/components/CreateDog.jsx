@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import { getDogs } from "../redux/actions";
 
 export default function CreateDog() {
-    const [selectedTemp, setSelectedTemp] = useState('');
+    const [selectedTemp, setSelectedTemp] = useState('')
     const [dog, setDog] = useState({
         temperaments: [],
         name: '',
@@ -14,7 +14,6 @@ export default function CreateDog() {
         life_span: '',
     })
 
-    //HOOKS
     const dogs = useSelector((state) => state.dogs)
     const history = useHistory()
     const dispatch = useDispatch()
