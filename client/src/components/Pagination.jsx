@@ -1,18 +1,22 @@
 
 
-export default function Pagination () {
-
-    const prevHandler = () => {
-        console.log("prev")
-    }
-    const nextHandler = () => {
-        console.log("nextHandler")
-    }
+export default function Pagination ({ 
+                currentPage, 
+                prevHandler, 
+                nextHandler, 
+                items
+            }) {
+                
+    const dogs = items.map((dog, index) => {
+        return (
+            <li key={dog.id} > {dog.name}</li>
+        )
+    })
+    console.log(dogs)
 
     return (
         <div>
-            <button onClick={prevHandler}>Prev</button>
-            <button onClick={nextHandler}>Next</button>
+            
         </div>
     )
 }

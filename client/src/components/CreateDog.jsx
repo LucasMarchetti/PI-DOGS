@@ -73,7 +73,6 @@ export default function CreateDog() {
                 })
             }
         }
-
     }
     
     function getNames(arr) {
