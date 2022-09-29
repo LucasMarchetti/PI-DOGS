@@ -15,22 +15,22 @@ export default function Order() {
         dispatch(getDogs())
     }, [dispatch]) 
 
-      const temperamentos = [] //temps
+    const temperamentos = [] 
 
-      if(dogs) {
-          dogs.map(({
-              temperament,
-          })=> {
-              if(temperament) {
-                  let temp = temperament.split(", ")
-                  temp.map((t) => { //t= ['Stubborn', 'Curious', 'Playful',...]
-                      if(temperamentos.indexOf(t) === -1){
-                          temperamentos.push(t)
-                      }
-                  })
-              }
-          }) 
-      }
+    if(dogs) {
+        dogs.map(({
+            temperament,
+        })=> {
+            if(temperament) {
+                let temp = temperament.split(", ")
+                temp.map((t) => { //t= ['Stubborn', 'Curious', 'Playful',...]
+                    if(temperamentos.indexOf(t) === -1){
+                        temperamentos.push(t)
+                    }
+                })
+            }
+        }) 
+    }
 
     function onSelectChange(e) {
         dispatch(sortByName(e.target.value))
@@ -48,6 +48,7 @@ export default function Order() {
     function onSelectChangeBreeds(e) {
         dispatch(filterByBreeds(e.target.value))
     }
+    
     
 
     return (

@@ -112,7 +112,8 @@ export default function rootReducer(state = initialState, action) {
 
         return {
           ...state,
-          dogs: orderDogs
+          dogs: orderDogs,
+          // filtered: orderDogs
         }
       }
 
@@ -126,7 +127,7 @@ export default function rootReducer(state = initialState, action) {
     }
 
     case FILTER_BY_TEMP: {  
-      console.log(action.payload, "Action payload reducer")
+
       let dogsFilter = []
 
       const d = [...state.dogs]
@@ -134,12 +135,12 @@ export default function rootReducer(state = initialState, action) {
       d.forEach((dog) => { // d = [{}, {}, {}...]
         if(dog.temperament) {
           
-          let temps = (dog.temperament).split(', ') 
-          //temps=["curious", "active"]
+          let temps = (dog.temperament).split(', ') //temps=["curious", "active"]
           temps.map((t) => {
             if(t === action.payload) {
               dogsFilter.push(dog)
             }
+            return
           })
         }
       })
@@ -159,20 +160,20 @@ export default function rootReducer(state = initialState, action) {
 
       dogs.forEach((d) => {
         if(action.payload === "API"){
-          if((d.id).length < 5){
+          if(d.id > 0 && d.id < 500){
             dogsApiDb.push(d)
           }
         }
         if(action.payload === "DB") {
-          if((d.id).length > 5) {
+          if(typeof d.id === 'string') {
             dogsApiDb.push(d)
           }
         }
       })
-
       return {
         ...state,
-        dogs: dogsApiDb
+        dogs: [...state.dogs, action.payload],
+        filtered: dogsApiDb
       }
     }
 

@@ -78,6 +78,7 @@ export function filterByTemp(temp) {
 }
 
 export function filterByBreeds(type) {
+  console.log(type, "Action payload actionn")
   return {
     type: FILTER_BY_BREED,
     payload: type

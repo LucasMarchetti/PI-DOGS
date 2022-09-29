@@ -12,9 +12,6 @@ export default function Dogs() {
   
   const dogs = useSelector((state) => state.dogs) 
   const filteredDogs = useSelector((state) => state.filtered)
-  // console.log(filteredDogs, "filteredDogs dogs")
-  // console.log(dogs, "dogs dogs")
-
 
   const [currentPage, setCurrentPage] = useState(1)
   let currentCards
@@ -28,11 +25,9 @@ export default function Dogs() {
   let totalCards
   
   if(filteredDogs.length > 0) {
-    totalCards = filteredDogs.length
-  } else { totalCards = dogs.length
+      totalCards = filteredDogs.length
+    } else { totalCards = dogs.length
   }
-  // console.log(totalCards, "total cards")
-  
   
   let lastPostIndex = currentPage * breedsPerPage
   let firstPostIndex = lastPostIndex - breedsPerPage
@@ -40,11 +35,9 @@ export default function Dogs() {
 
   
   if(filteredDogs.length !== 0) {
-    currentCards = filteredDogs.slice(firstPostIndex, lastPostIndex)
-  } else if (dogs) {currentCards = dogs.slice(firstPostIndex, lastPostIndex)
+      currentCards = filteredDogs.slice(firstPostIndex, lastPostIndex)
+    } else if (dogs) {currentCards = dogs.slice(firstPostIndex, lastPostIndex)
   }
-  // console.log(currentCards, "currentCards cards")
-
   
   const pageNumbers = []
   const limitPages = (Math.ceil(totalCards/breedsPerPage) + 1 )
@@ -75,7 +68,7 @@ export default function Dogs() {
 
         <div className="pagination">
             <button className="prevButton" onClick={prevHandler}>Prev</button>
-            <ul className="ul-links">
+            <ul className="ul-links" >
               {
               pageNumbers.map(number => (
                   <li className="li-links" style={{textDecoration: 'none'}} key={number}>
