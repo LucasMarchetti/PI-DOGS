@@ -19,7 +19,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    years: {
+    life_span: {
       type: DataTypes.INTEGER,
     },
     temperament: {

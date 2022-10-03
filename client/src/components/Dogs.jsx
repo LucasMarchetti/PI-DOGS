@@ -12,8 +12,14 @@ export default function Dogs() {
   
   const dogs = useSelector((state) => state.dogs) 
   const filteredDogs = useSelector((state) => state.filtered)
-
+  const searchDog = useSelector((state) => state.searchDogs)
   const [currentPage, setCurrentPage] = useState(1)
+
+  // console.log(dogs, "dogs Dogs")
+  // console.log(searchDog, "searchDog Dogs")
+  // console.log(filteredDogs, "filteredDogs Dogs")
+
+
   let currentCards
   
   useEffect(() => {
@@ -24,18 +30,19 @@ export default function Dogs() {
 
   let totalCards
   
-  if(filteredDogs.length > 0) {
+  if(searchDog.length > 0) {
+    totalCards = searchDog.length
+    } else if (filteredDogs.length > 0) {
       totalCards = filteredDogs.length
     } else { totalCards = dogs.length
   }
   
   let lastPostIndex = currentPage * breedsPerPage
   let firstPostIndex = lastPostIndex - breedsPerPage
-  
-
-  
-  if(filteredDogs.length !== 0) {
-      currentCards = filteredDogs.slice(firstPostIndex, lastPostIndex)
+  if(searchDog.length !== 0) {
+    currentCards = searchDog.slice(firstPostIndex, lastPostIndex)
+  } else if(filteredDogs.length !== 0) {
+    currentCards = filteredDogs.slice(firstPostIndex, lastPostIndex)
     } else if (dogs) {currentCards = dogs.slice(firstPostIndex, lastPostIndex)
   }
   
@@ -43,13 +50,13 @@ export default function Dogs() {
   const limitPages = (Math.ceil(totalCards/breedsPerPage) + 1 )
 
   for (let i = 1; i <= Math.ceil(totalCards / breedsPerPage); i++) {
-      pageNumbers.push(i)
+    pageNumbers.push(i)
   }
 
   const nextHandler = () => {
     const nextPage = currentPage + 1
 
-    if(nextPage === limitPages) return;
+    if(nextPage === limitPages) return
 
     setCurrentPage(nextPage)
   }
@@ -57,7 +64,7 @@ export default function Dogs() {
   const prevHandler = () => {
     const prevPage = currentPage - 1
 
-    if (prevPage < 1) return;
+    if (prevPage < 1) return
 
     setCurrentPage(prevPage)
   }
@@ -67,17 +74,17 @@ export default function Dogs() {
         <Order />
 
         <div className="pagination">
-            <button className="prevButton" onClick={prevHandler}>Prev</button>
+            <button className="Button" onClick={prevHandler}>Prev</button>
             <ul className="ul-links" >
               {
               pageNumbers.map(number => (
-                  <li className="li-links" style={{textDecoration: 'none'}} key={number}>
+                  <li key={number}>
                       <a onClick={() => setCurrentPage(number)} value={number} >{number}</a>
                   </li>
               ))
               }
             </ul>
-            <button className="prevButton" onClick={nextHandler}>Next</button>
+            <button className="Button" onClick={nextHandler}>Next</button>
         </div>
 
       {
@@ -87,7 +94,7 @@ export default function Dogs() {
             image,
             weight, 
             temperament,
-            temperamento
+            temperamento,
           }) => {
             return (
             <div className="cards">
@@ -116,6 +123,19 @@ export default function Dogs() {
           </Link>
         </div>
       }
+      <div className="pagination">
+            <button className="Button" onClick={prevHandler}>Prev</button>
+            <ul className="ul-links" >
+              {
+              pageNumbers.map(number => (
+                  <li key={number}>
+                      <a onClick={() => setCurrentPage(number)} value={number} >{number}</a>
+                  </li>
+              ))
+              }
+            </ul>
+            <button className="Button" onClick={nextHandler}>Next</button>
+        </div>
     </div>
   )
 }

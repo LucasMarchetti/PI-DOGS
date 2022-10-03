@@ -14,6 +14,7 @@ const initialState = {
   dogDetail: [],
   newDog: [],
   filtered: [],
+  searchDogs: [],
 }
 
 export default function rootReducer(state = initialState, action) {
@@ -29,11 +30,13 @@ export default function rootReducer(state = initialState, action) {
     }
 
     case GET_DETAILS: {
+      console.log(action.payload, "action payload")
       
       return {
         ...state,
-        dogs: action.payload,
-        dogDetail: action.payload
+        dogDetail: action.payload,
+        dogs: [...state.dogs],
+        searchDogs: action.payload,
       }
     }
 
@@ -45,7 +48,16 @@ export default function rootReducer(state = initialState, action) {
     }
 
     case SORT_BY_NAME: {
-      let orderDogs = [...state.dogs]
+      let orderDogs
+
+      if([...state.searchDogs].length > 0) {
+        orderDogs = [...state.searchDogs]
+      } else if([...state.filtered].length > 0) {
+        orderDogs = [...state.filtered]
+      } else {
+        orderDogs = [...state.dogs]
+      }
+
       orderDogs = orderDogs.sort((a, b) => {
         if(a.name < b.name) {
           return action.payload === ASCENDENTE ? -1 : 1
@@ -58,12 +70,23 @@ export default function rootReducer(state = initialState, action) {
 
       return {
         ...state,
-        dogs: orderDogs
+        dogs: [...state.dogs],
+        filtered: orderDogs,
+        searchDogs: orderDogs
       }
     }
 
     case SORT_BY_WEIGHT: {
-      let orderDogs = [...state.dogs]
+      let orderDogs
+      
+      if([...state.searchDogs].length > 0) {
+        orderDogs = [...state.searchDogs]
+      } else if([...state.filtered].length > 0) {
+        orderDogs = [...state.filtered]
+      } else {
+        orderDogs = [...state.dogs]
+      }
+
       let promA
       let promB
 
@@ -112,13 +135,14 @@ export default function rootReducer(state = initialState, action) {
 
         return {
           ...state,
-          dogs: orderDogs,
-          // filtered: orderDogs
+          dogs: [...state.dogs],
+          filtered: orderDogs,
+          searchDogs: orderDogs
         }
       }
 
-      case CREATE_DOG: {
-        let newDog = [...state, action.payload]
+    case CREATE_DOG: {
+      let newDog = [...state, action.payload]
 
       return {
         ...state, 
@@ -128,9 +152,25 @@ export default function rootReducer(state = initialState, action) {
 
     case FILTER_BY_TEMP: {  
 
-      let dogsFilter = []
+      if(action.payload === 'select temp') {
+        return {
+          ...state,
+          dogs: [...state.dogs],
+          filtered: [...state.dogs]
+        }
+      }
 
-      const d = [...state.dogs]
+      let dogsFilter = []
+      let d
+
+      if([...state.searchDogs].length > 0) {
+        d = [...state.searchDogs]
+      } else if ([...state.filtered].length > 0) {
+        d = [...state.filtered]
+      } else {
+        d = [...state.dogs]
+      }
+      
 
       d.forEach((dog) => { // d = [{}, {}, {}...]
         if(dog.temperament) {
@@ -147,13 +187,21 @@ export default function rootReducer(state = initialState, action) {
 
       return {
         ...state,
-        dogs: [...state.dogs, action.payload],
-        filtered: dogsFilter
+        dogs: [...state.dogs],
+        filtered: dogsFilter,
+        searchDogs: dogsFilter
       }
     }
     
     case FILTER_BY_BREED: {
-      
+      // console.log(action.payload, "payload reducer")=APIDB
+      if(action.payload === "APIDB") {
+        return {
+          ...state,
+          dogs: [...state.dogs],
+          filtered: [...state.dogs]
+        }
+      }
       let dogsApiDb = []
 
       let dogs = [...state.dogs]
@@ -172,7 +220,7 @@ export default function rootReducer(state = initialState, action) {
       })
       return {
         ...state,
-        dogs: [...state.dogs, action.payload],
+        dogs: [...state.dogs],
         filtered: dogsApiDb
       }
     }

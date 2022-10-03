@@ -20,7 +20,7 @@ export default function Order() {
     if(dogs) {
         dogs.map(({
             temperament,
-        })=> {
+        }) => {
             if(temperament) {
                 let temp = temperament.split(", ")
                 temp.map((t) => { //t= ['Stubborn', 'Curious', 'Playful',...]
@@ -41,7 +41,13 @@ export default function Order() {
     }
 
     function onSelectChangeTemp(e) {
-        setSelectedTemp(e.target.value)
+        console.log(e.target.value, "e.target.value")
+
+        if(e.target.value === "select temp") {
+            setSelectedTemp('')
+        }else {
+            setSelectedTemp(e.target.value)
+        }
         dispatch(filterByTemp(e.target.value))
     }
 
@@ -78,7 +84,7 @@ export default function Order() {
                     onChange={onSelectChangeTemp} 
                     name="temperaments" 
                     value={selectedTemp}>
-                    <option className="option" value=''>Select temperaments</option>
+                    <option className="option" value='select temp'>Select temperaments</option>
                     {
                         temperamentos.map((t) => (
                             <option value={t} key={t}>{t}</option>
@@ -93,7 +99,7 @@ export default function Order() {
                     onChange={onSelectChangeBreeds}
                     name="exist" 
                     id="">
-                    <option value="">API & DB</option>
+                    <option value="APIDB">API & DB</option>
                     <option value="API">API</option>
                     <option value="DB">Data Base</option>
                 </select>

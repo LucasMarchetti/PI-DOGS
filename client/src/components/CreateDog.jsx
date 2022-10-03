@@ -6,6 +6,8 @@ import { getDogs } from "../redux/actions";
 
 export default function CreateDog() {
     const [selectedTemp, setSelectedTemp] = useState('')
+    const [errors, setErrors] = useState({})
+
     const [dog, setDog] = useState({
         temperaments: [],
         name: '',
@@ -24,10 +26,19 @@ export default function CreateDog() {
       
     function onSubmit(e) {
         e.preventDefault()
-        axios.post('http://localhost:3001/api/dogs/create', dog)
-        .then(() => {
-            history.push('/home/dogs')
-        })
+        console.log(errors, "errors1")
+        let er = errors
+        if(Object.entries(er).length !== 0) {
+            console.log(Object.entries(er).length, "er")
+            return (
+                alert("Check the data provided")
+            )
+        } else if (Object.entries(er).length === 0) {
+            axios.post('http://localhost:3001/api/dogs/create', dog)
+            .then(() => {
+                history.push('/home/dogs')
+            })  
+        }
     }
 
     const temperamentos = []
@@ -46,17 +57,60 @@ export default function CreateDog() {
             }
         }) 
     }
-    // *** HACER VALIDACIONES ***
-    // Que el nombre de la raza no pueda contener números o símbolos, 
-    // que el peso/altura mínimo no pueda ser mayor al máximo y viceversa, etc
-    function onInputChange(e) { 
-        e.preventDefault()
-        setDog({
-            ...dog,
-            [e.target.name]: e.target.value
-        })
+
+    function validate (input) {
+        let errors = {}
+        const expReg = /^[a-zA-Z ]+$/
+
+        if(!input.name) {
+            errors.name = "Name is required"
+        } else if (!expReg.test(input.name)) {
+            errors.name = "Name is invalid "
+        } else if (input.name.length > 25) {
+            errors.name = "Maximum number of characters, 20"
+        }
+
+        if(!input.height) {
+            errors.height = "Height is required"
+        } else if (!/(?=.*[0-9])/.test(input.height)) {
+            errors.height = "Height must contain a number"
+        } else if (input.height.length > 100) {
+            errors.height = "Maximum height, 100cm"
+        }
+
+        if(!input.weight) {
+            errors.weight = "Weight is required"
+        } else if (!/(?=.*[0-9])/.test(input.weight)) {
+            errors.weight = "Weight must contain a number"
+        } else if (input.weight.length > 100) {
+            errors.weight = "Maximum weight, 100kg"
+        }
+
+        if(!input.life_span) {
+            errors.life_span = "Life span is required"
+        } else if (!/(?=.*[0-9])/.test(input.life_span)) {
+            errors.life_span = "Life span must contain a number"
+        } else if (input.life_span.length > 50) {
+            errors.life_span = "Maximum life span, 50 years"
+        }
+
+        return errors
     }
 
+    function onInputChange(e) { 
+        e.preventDefault()
+        console.log(e.target.value, "target")
+        const {name, value} = e.target
+
+        const newDog = {
+            ...dog,
+            [name]: value
+        }
+        console.log(newDog, "newdog")
+
+        setDog(newDog)
+        setErrors(validate(newDog))
+    }
 
     const handleChangeTemp = (ev) => {
 
@@ -98,61 +152,68 @@ export default function CreateDog() {
             <label htmlFor="" >Name: </label>
             <input 
                 required
-                className="input-create"
+                className={ errors.name ? "error" : "input-create"}
                 onChange={onInputChange}
                 name="name" 
                 type='text' 
                 value={dog.name}
-                placeholder="Name"
+                placeholder="Name ..."
             ></input>
+            {errors.name ? <span className="error-span">{errors.name}</span> : <></>}
+
             <br/>
 
             <label htmlFor="" >Height: </label>
             <input 
                 required
-                className="input-create"
+                className={ errors.height ? "error" : "input-create"}
                 onChange={onInputChange} 
                 name="height" 
                 type='number' 
                 value={dog.height}
-                placeholder="Height"
+                placeholder="Height cm ..."
                 min="1"
                 max="100"
             ></input>
+            {errors.height ? <span className="error-span">{errors.height}</span> : <></>}
+
             <br/>
 
-            <label htmlFor="" >Weight: </label>
+            <label htmlFor="">Weight: </label>
             <input 
                 required
-                className="input-create"
+                className={ errors.weight ? "error" : "input-create"}
                 onChange={onInputChange} 
                 name="weight" 
                 type='number' 
                 value={dog.weight}
-                placeholder="Weight"
+                placeholder="Weight kg ..."
                 min="1"
                 max="100"
             ></input>
+            {errors.weight ? <span className="error-span">{errors.weight}</span> : <></>}
             <br/>
 
-            <label htmlFor="" >Years span: </label>
+            <label htmlFor="">Years span: </label>
             <input 
                 required
-                className="input-create"
+                className={ errors.life_span ? "error" : "input-create"}
                 onChange={onInputChange} 
-                name="years" 
+                name="life_span" 
                 type='number' 
-                value={dog.years}
-                placeholder="Years span"
+                value={dog.life_span}
+                placeholder="Years span ..."
                 min="1"
                 max="50"
             ></input>
+            {errors.life_span ? <span className="error-span">{errors.life_span}</span> : <></>}
             <br/>
 
             <select 
                 onChange={handleChangeTemp} 
                 name="temperaments" 
                 value={selectedTemp} 
+                required
                 className="select-create">
                 <option value=''>Select temperaments</option>
                 {

@@ -108,7 +108,7 @@ router.get('/id/:id', async (req, res, next) => {
 router.post('/create' , async (req, res, next) => { // /api/dogs/*
     let temperamentos
 
-    let { name, height, weight, years, temperament, temperaments } = req.body
+    let { name, height, weight, life_span, temperament, temperaments } = req.body
 
     if(temperaments.length > 1) {
        temperamentos = temperaments.join(", ")
@@ -124,7 +124,7 @@ router.post('/create' , async (req, res, next) => { // /api/dogs/*
         name,
         height,
         weight,
-        years,
+        life_span,
         temperament: temperamentos,
     })
     await newDog.addTemperament(temperament)
